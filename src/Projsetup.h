@@ -27,7 +27,17 @@ const char header[] = R"(
 #endif
 )";
 
+// this is so we can concate the gcc command with the name of the file we have chosen :D idk if there's a better way to implement this
+const char makeftop[] = R"(
+CC = gcc
+all:
 
+)";
+
+const char makefbot[] = R"(
+clean:
+	rm -rf ./build/*
+)";
 
 const char cfile[] = R"(
 #include <stdio.h>

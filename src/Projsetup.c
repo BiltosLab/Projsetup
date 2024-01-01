@@ -17,19 +17,22 @@ void filecreate(char* filename,const char* filecontent)
 
 char* projmake(char* projname,char lang)
 {
+    mkdir_cd(projname,0777); // Make the root dir of the project
     // Determine the lengths of the strings
     char makefile[50];
     size_t filenameLength = strlen(projname);
-    size_t extensionLength = 4;  // Assuming ".cpp" or ".h"
-    char *cmainFilename = (char *)malloc(filenameLength + extensionLength + 1);  // +1 for the null terminator
+    size_t extensionLength = 4;  // Assuming ".cpp" or ".h" can be expanded later if i add more langs other than those 2.
+    char *cmainFilename = (char *)malloc(filenameLength + extensionLength + 1);  // +1 for the null terminator otherwise we get cut off names and we dont want that.
     char *hFilename = (char *)malloc(filenameLength + extensionLength + 1);
     // Check if memory allocation is successful
     if (cmainFilename == NULL || hFilename == NULL) {
         perror("Memory allocation error");
         exit(1);
     }
+
     strcpy(cmainFilename, projname);
-    if (lang == 'c')
+    // prob need a string here to represent language choice but since we're on 2 rn it should be fine
+    if (lang == 'c') // self explanatory (if u choose c we will use c extension and so on :D)
     {
         strcat(cmainFilename, cext);
     }
@@ -40,7 +43,7 @@ char* projmake(char* projname,char lang)
     
     strcpy(hFilename, projname);
     strcat(hFilename, headerext);
-    snprintf(makefile,sizeof(makefile),"gcc %s -o %s",cmainFilename,projname);
+    snprintf(makefile,sizeof(makefile),"%sgcc %s -o %s\n%s",makeftop,cmainFilename,projname,makefbot); // idk what a better way to implement this but rn this should do.
     filecreate("Makefile",makefile);
     filecreate("README.md",readme);
     filecreate(".gitignore",gitignore);
