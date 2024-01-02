@@ -45,7 +45,14 @@ char *projmake(char *projname, char lang)
 
     strcpy(hFilename, projname);
     strcat(hFilename, headerext);
-    snprintf(makefile, sizeof(makefile), "%s\tgcc ./src/%s -o ./build/%s\n%s", makeftop, cmainFilename, projname, makefbot); // idk what a better way to implement this but rn this should do.
+    if (lang == 'c')
+    {
+        snprintf(makefile, sizeof(makefile), "%s\t$(CC) ./src/%s -o ./build/%s\n%s", makeftopc, cmainFilename, projname, makefbot); // idk what a better way to implement this but rn this should do.
+    }
+    else if (lang == 'a')
+    {
+        snprintf(makefile, sizeof(makefile), "%s\t$(CC) ./src/%s -o ./build/%s\n%s", makeftopcpp, cmainFilename, projname, makefbot); // idk what a better way to implement this but rn this should do.
+    }
     filecreate("Makefile", makefile);
     filecreate("README.md", readme);
     filecreate(".gitignore", gitignore);
@@ -96,7 +103,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            printf("Error,Usage Projsetup <lang choice> eg Projsetup c | Projsetup cpp")
+            printf("Error,Usage Projsetup <lang choice> eg Projsetup c | Projsetup cpp");
         }
         
         
