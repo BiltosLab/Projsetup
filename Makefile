@@ -9,3 +9,4 @@ all:
 
 clean:
 	rm -rf ./build/*
+	touch ./build/.keep

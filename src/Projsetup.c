@@ -56,7 +56,9 @@ char *projmake(char *projname, char lang)
     filecreate("Makefile", makefile);
     filecreate("README.md", readme);
     filecreate(".gitignore", gitignore);
-    mkdir("build", 0777);
+    mkdir_cd("build");
+    filecreate(".keep","");
+    chdir("..");
     mkdir_cd("src");
     if (lang == 'c')
     {

@@ -13,11 +13,12 @@ const char headerext[] = ".h";
 const char cppext[] = ".cpp";
 
 const char readme[] = R"(
-# This is a new project created by Projsetup app
+# This is a new project created by Projsetup
 )";
 
 const char gitignore[] = R"(
-/build
+/build/*
+/.vscode
 )";
 
 
@@ -41,6 +42,7 @@ all:
 const char makefbot[] = R"(
 clean:
 	rm -rf ./build/*
+    touch ./build/.keep
 )";
 
 const char cfile[] = R"(
