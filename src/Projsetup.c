@@ -73,6 +73,11 @@ char *projmake(char *projname, char lang)
 
 int main(int argc, char *argv[])
 {
+    if (argc < 2 || argc > 2)
+    {
+        printf("Usage Projsetup <lang choice> eg Projsetup c | Projsetup cpp");
+        return 0;
+    }
     char projectname[NAMELEN];
     printf("Enter name of project:!\n");
     fgets(projectname, sizeof(projectname), stdin);
@@ -80,7 +85,22 @@ int main(int argc, char *argv[])
     {
         projectname[strlen(projectname) - 1] = '\0';
     }
-    projmake(projectname, 'c');
+       if (argc == 2){
+        if (strcmp("c",argv[1]) ==0)
+        {
+            projmake(projectname, 'c');
+        }
+        else if (strcmp("cpp",argv[1]) ==0)
+        {
+            projmake(projectname, 'a');
+        }
+        else
+        {
+            printf("Error,Usage Projsetup <lang choice> eg Projsetup c | Projsetup cpp")
+        }
+        
+        
+    }
 
     return 0;
 }
