@@ -87,6 +87,11 @@ int main(int argc, char *argv[])
         printf("Usage Projsetup <lang choice> eg Projsetup c | Projsetup cpp | -v for version");
         return 0;
     }
+    if (argc == 2 && strcmp("-v",argv[1]) ==0)
+        {
+            printf("Projsetup Version %f\n",VERSION);
+            return 0;
+        }
     char projectname[NAMELEN];
     printf("Enter name of project:!\n");
     fgets(projectname, sizeof(projectname), stdin);
@@ -102,10 +107,6 @@ int main(int argc, char *argv[])
         else if (strcmp("cpp",argv[1]) ==0)
         {
             projmake(projectname, 'a');
-        }
-        else if (strcmp("-v",argv[1]) ==0)
-        {
-            printf("Projsetup Version %d\n",VERSION);
         }
         else
         {
