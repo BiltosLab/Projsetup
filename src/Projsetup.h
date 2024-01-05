@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 #define NAMELEN 100
-
+#define VERSION 0.1
 const char cext[] = ".c";
 const char headerext[] = ".h";
 const char cppext[] = ".cpp";

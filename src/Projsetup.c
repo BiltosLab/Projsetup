@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 2 || argc > 2)
     {
-        printf("Usage Projsetup <lang choice> eg Projsetup c | Projsetup cpp");
+        printf("Usage Projsetup <lang choice> eg Projsetup c | Projsetup cpp | -v for version");
         return 0;
     }
     char projectname[NAMELEN];
@@ -103,9 +103,13 @@ int main(int argc, char *argv[])
         {
             projmake(projectname, 'a');
         }
+        else if (strcmp("-v",argv[1]) ==0)
+        {
+            printf("Projsetup Version %d\n",VERSION);
+        }
         else
         {
-            printf("Error,Usage Projsetup <lang choice> eg Projsetup c | Projsetup cpp");
+            printf("Error,Usage Projsetup <lang choice> eg Projsetup c | Projsetup cpp | -v for version");
         }
         
         
