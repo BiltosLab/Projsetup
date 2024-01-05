@@ -32,18 +32,12 @@ const char header[] = R"(
 const char makeftopc[] = R"(
 CC = gcc
 all:
-
 )";
 const char makeftopcpp[] = R"(
 CC = g++
 all:
+)";
 
-)";
-const char makefbot[] = R"(
-clean:
-	rm -rf ./build/*
-    touch ./build/.keep
-)";
 
 const char cfile[] = R"(
 #include <stdio.h>

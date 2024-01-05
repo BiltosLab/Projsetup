@@ -4,7 +4,7 @@ CC = gcc
 
 
 all:
-	gcc ./src/Projsetup.c -o ./build/Projsetup
+	$(CC) ./src/Projsetup.c -o ./build/Projsetup
 
 
 clean:

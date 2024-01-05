@@ -14,10 +14,10 @@ void filecreate(char *filename, const char *filecontent)
 }
 
 char *projmake(char *projname, char lang)
-{
+{   char makefbot[50]; 
     mkdir_cd(projname); // Make the root dir of the project
     int result = system("git init");
-
+    sprintf(makefbot,"clean:\n\trm -rf ./build/*\n\ttouch ./build/.keep\n"); // Unfortunetly i had to do this instead of making it a const char like the rest due to TAB character werid issues casuing the makefile to fail for whatever reason.
     // Determine the lengths of the strings
     //int sizeofmake = sizeof(makeftop)+sizeof(makefbot);
     char makefile[300];
@@ -47,11 +47,11 @@ char *projmake(char *projname, char lang)
     strcat(hFilename, headerext);
     if (lang == 'c')
     {
-        snprintf(makefile, sizeof(makefile), "%s\t$(CC) ./src/%s -o ./build/%s\n%s", makeftopc, cmainFilename, projname, makefbot); // idk what a better way to implement this but rn this should do.
+        snprintf(makefile, sizeof(makefile), "%s\n\t$(CC) ./src/%s -o ./build/%s\n%s", makeftopc, cmainFilename, projname, makefbot); // idk what a better way to implement this but rn this should do.
     }
     else if (lang == 'a')
     {
-        snprintf(makefile, sizeof(makefile), "%s\t$(CC) ./src/%s -o ./build/%s\n%s", makeftopcpp, cmainFilename, projname, makefbot); // idk what a better way to implement this but rn this should do.
+        snprintf(makefile, sizeof(makefile), "%s\n\t$(CC) ./src/%s -o ./build/%s\n", makeftopcpp, cmainFilename, projname, makefbot); // idk what a better way to implement this but rn this should do.
     }
     filecreate("Makefile", makefile);
     filecreate("README.md", readme);
